@@ -26,7 +26,7 @@ let variavel2;
 variavel2 = 'ariel';
 console.log(variavel2);
 
-// Criada normalmente em escopo local de bloco
+// Criada normalmente em escopo local de bloco // Não faz Hoisting
 const constante = 'ariel'; //Deve ser declarada
 // constante = 'Ariel'; // Não pode ser reatribuida
 console.log(constante);
@@ -62,7 +62,11 @@ console.log(comparacao);
 var coparacao2 = '0' === 0;
 console.log(coparacao2);
 
-
+// Hoisting // Tipo declarado após atribuição
+numberOne = 1;
+console.log(numberOne + 2);
+var numberOne; // não necessário, declarado variável de escopo global altomáticamente
+// let numberOne // let deve ser declarado antes
 
 
 // Adiçõa

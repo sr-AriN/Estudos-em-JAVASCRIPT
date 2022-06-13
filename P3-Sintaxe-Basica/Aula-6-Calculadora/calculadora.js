@@ -80,7 +80,7 @@ function calculadora(){
                     subtracao()
                     break
                 case 3:
-                    multiplicacao
+                    multiplicacao()
                     break
                 case 4:
                     divisaoReal()
@@ -93,9 +93,7 @@ function calculadora(){
                     break
             }
         }
-
     }
-    
 }
 
 
