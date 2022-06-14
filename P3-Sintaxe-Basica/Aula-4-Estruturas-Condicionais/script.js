@@ -48,7 +48,8 @@ for(let i in array){
 
 // for in com object // imprime cada indice
 for(i in object){
-    console.log(i);
+    console.log(i); //imprime a propriedade 1 e etc
+    console.log(object[i]) // imprime o valor1 da propriedade 1 e etc
 }
 
 // for of em array // Imprime o conteúdo de cada indice

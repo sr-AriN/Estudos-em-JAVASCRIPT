@@ -56,3 +56,51 @@ console.log(arrayInterno);
 // Outra forma
 var {string, boolean, objectInterno} = object;
 console.log(string, boolean, objectInterno);
+
+// Outro exemplo
+const user = {
+    id: 42,
+    displayName: 'Johel',
+    fullName: {
+        firstName: 'Johel',
+        LastName: 'Doe'
+    }
+}
+
+//Faz a requisição do elemento 'id'
+function userId({id}){
+    return id
+}
+
+// Faz a requisição dos elementos especificos dentro de fullName e lhes atribui um apelido
+function getFullName({fullName: {firstName: first, lastName: last}}){
+    return `${first} ${last}`
+}
+
+userId(user)
+//42
+
+getFullName(user)
+//Johel Doe
+
+
+
+
+
+// Spread
+function sum(x, y, z){
+    return x + y + z
+}
+const numbers = [1, 2, 3]
+// console.log(sum(numbers)) // x recebe o array com os 3 elementos
+console.log(sum(...numbers)) // os elementos são atribuidos a cada parâmetro
+
+
+// Rest
+function confereTamanho(...args){
+    console.log(args.length)
+}
+
+confereTamanho()// 0
+confereTamanho(1, 2)// 2
+confereTamanho(3, 4, 5)// 3
