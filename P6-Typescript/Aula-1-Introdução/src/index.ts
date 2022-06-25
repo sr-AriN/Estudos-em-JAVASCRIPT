@@ -79,6 +79,32 @@ const productId: myIdType = 10
 const shirId: myIdType = "00001"
 
 
+//Outro uso de type
+interface IAnimal2 {
+    nome: string,
+    tipo: 'terrestre' | 'aquático',
+    domestico: boolean
+}
+
+interface IFelino2 extends IAnimal {
+    visãoNoturna: boolean
+}
+
+interface ICanino extends IAnimal2 {
+    porte: 'pequeno' | 'medio' | 'grande'
+}
+
+type IDomestico = IFelino2 | ICanino
+// type IDomestico = IFelino2 & ICanino
+
+const animal2: IDomestico = {
+    domestico: true,
+    nome: 'cachorro',
+    porte: 'medio',
+    tipo: 'terrestre'
+    // visaoNoturna: true
+}
+
 // enum
 // tamanho de roupas (size: Médio, size: Pequeno)
 enum Size{
@@ -161,6 +187,31 @@ const someNumbers: MathFunctionParams = {
     n1: 5,
     n2: 10
 }
+
+//Interface 2
+interface IAnimal {
+    nome: string;
+    tipo: "terrestre" | "aquático"
+    executarRugido(alturaEmDecibeis: number): void
+}
+
+interface IFelino extends IAnimal {
+    visaoNoturna: boolean
+}
+
+const animal: IAnimal = {
+    nome: "Elefante",
+    tipo: "terrestre",
+    executarRugido: (alturaEmDecibeis) => (`${alturaEmDecibeis}dB`)
+}
+
+const felino: IFelino = {
+    nome: "Leão",
+    tipo: "terrestre",
+    visaoNoturna: true,
+    executarRugido: (alturaEmDecibeis) => (`${alturaEmDecibeis}dB`)
+}
+
 
 console.log(multiplyNumbers(someNumbers));
 
@@ -284,3 +335,67 @@ class Person {
 const sam = new Person("Sam")
 
 console.log(sam);
+
+
+//Tratando tag input
+const input = document.getElementById('input') as HTMLInputElement
+input.addEventListener('input', (event) => {
+    console.log('Digitei');
+    const i = event.currentTarget as HTMLInputElement
+    console.log(i.value);
+})
+
+
+// ReadOnly e private
+interface Cachorro {
+    nome: string,
+    idade: number,
+    parqueFavorito?: string
+}
+
+type CachorroSomenteLeitura = {
+    // + opicional
+    +readonly[K in keyof Cachorro]-?: Cachorro[K]
+}
+
+class MeuCachorro implements CachorroSomenteLeitura {
+    idade
+    nome
+    parqueFavorito
+
+    constructor(nome: string, idade: number, parqueFavorito: string) {
+        this.nome = nome
+        this.idade = idade
+        this.parqueFavorito = parqueFavorito
+    }
+}
+
+const cao = new MeuCachorro('Apolo', 14, 'Central')
+
+
+// Importando bibliotecas
+// import $ from 'jquery';
+
+// $.fn.extends({
+//     novaFuncao() {
+//         console.log('Chamou nova funcao');
+//     }
+// })
+
+// $('body').novaFuncao()
+
+// Omit
+interface IPessoa {
+    nome: string
+    idade: number
+    nacionalidade: string
+}
+
+interface IBrasileiro extends Omit<IPessoa, 'nacionalidade'> {
+
+}
+
+const brasileiro: IBrasileiro = {
+    nome: 'João',
+    idade: 21
+}
